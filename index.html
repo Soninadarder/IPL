@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>IPL · International Projects for Learning & Educational Coaching</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="IPL · International Projects for Learning & Educational Coaching. Formación docente en inteligencia artificial y tecnología educativa para colegios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: portada oscura con red de nodos animada · bandas alternas · tarjetas interactivas · una columna en el móvil */
+:root {
+  --navy: #1C2B4A;
+  --navy-deep: #111C33;
+  --navy-2: #24365C;
+  --gold: #A07A3C;
+  --gold-ink: #7A5A26;
+  --gold-soft: #D4AF6A;
+  --bg: #FFFFFF;
+  --band: #F7F5F0;
+  --line: #E4DFD4;
+  --fg: #1C2B4A;
+  --muted: #4E5A70;
+  --card: #FFFFFF;
+  --on-navy: #FFFFFF;
+  --on-navy-muted: #C9D0DC;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0E1628; --band: #141F36; --line: #2A3A5C; --fg: #EEF1F6; --muted: #B4BED0; --card: #18243E; --gold-ink: #D4AF6A; --gold: #D4AF6A; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0E1628; --band: #141F36; --line: #2A3A5C; --fg: #EEF1F6; --muted: #B4BED0; --card: #18243E; --gold-ink: #D4AF6A; --gold: #D4AF6A; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--navy-deep); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -0.8px; }
+h3 { font-size: 20px; }
+p { margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(64px, 9vw, 112px); position: relative; }
+.band.alt { background: var(--band); }
+.band.dark { background: var(--navy); color: var(--on-navy); }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold-ink); }
+.dark .eyebrow, .hero .eyebrow { color: var(--gold-soft); }
+.lead { font-size: 18px; color: var(--muted); max-width: 64ch; }
+.dark .lead { color: var(--on-navy-muted); }
+.head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 44px; }
+:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; border-radius: 6px; }
+.grid { display: grid; gap: 20px; }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 960px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .g3, .g2, .g4 { grid-template-columns: 1fr; } }
+.grid > * { min-width: 0; }
+
+/* Cabecera */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(17, 28, 51, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #FFFFFF; border-bottom: 1px solid rgba(212,175,106,0.25); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+.brand svg { flex: none; }
+.brand b { font-family: var(--font-display); font-size: 26px; letter-spacing: -0.3px; line-height: 1; display: block; }
+.brand span { display: block; font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: #C9D0DC; line-height: 1.35; margin-top: 3px; }
+.menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px 18px; font-size: 14.5px; font-weight: 500; }
+.menu a { text-decoration: none; padding: 10px 0; position: relative; color: #E6EAF2; }
+.menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; background: var(--gold-soft); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.menu a:hover::after, .menu a.on::after { transform: scaleX(1); }
+.menu-btn { display: none; min-height: 44px; min-width: 44px; border: 1px solid rgba(212,175,106,0.5); background: transparent; color: #FFFFFF; border-radius: 10px; font: inherit; font-weight: 600; padding: 0 14px; cursor: pointer; }
+@media (max-width: 1080px) {
+  .menu-btn { display: inline-block; }
+  .menu { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--navy-deep); flex-direction: column; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 18px max(16px, env(safe-area-inset-left, 0px)); border-bottom: 1px solid rgba(212,175,106,0.3); }
+  .menu.open { display: flex; }
+}
+@media (max-width: 520px) { .brand span { font-size: 8.5px; letter-spacing: 1px; } }
+
+/* Portada */
+.hero { position: relative; background: radial-gradient(1200px 600px at 75% 30%, #24365C 0%, #111C33 60%); color: #FFFFFF; overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; padding-block: clamp(64px, 9vw, 120px); }
+.hero .text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.hero h1 { font-size: clamp(38px, 6vw, 72px); letter-spacing: -1.5px; }
+.rotor { display: inline-grid; color: var(--gold-soft); vertical-align: top; }
+.rotor > span { grid-area: 1 / 1; transition: opacity .6s ease; }
+.rotor > span.off { opacity: 0; }
+.hero .lead { color: #D3D9E4; }
+.hero-badge { justify-self: center; position: relative; width: min(340px, 100%); aspect-ratio: 1; max-width: 100%; }
+.hero-badge svg { width: 100%; height: 100%; filter: drop-shadow(0 20px 50px rgba(0,0,0,.35)); }
+.hero-badge .ring { animation: spin 30s linear infinite; transform-origin: 60px 60px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; font: inherit; font-weight: 700; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.18); }
+.btn.gold { background: var(--gold-soft); color: #1C2B4A; }
+.btn.line { border-color: rgba(255,255,255,.45); color: #FFFFFF; }
+.btn.navy { background: var(--navy); color: #FFFFFF; }
+:root[data-theme="dark"] .btn.navy { background: var(--gold-soft); color: #1C2B4A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.navy { background: var(--gold-soft); color: #1C2B4A; } }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding-top: 12px; }
+.stat { border-left: 2px solid var(--gold-soft); padding-left: 12px; }
+.stat b { display: block; font-family: var(--font-display); font-size: clamp(26px, 3vw, 36px); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: #C9D0DC; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero-badge { width: 170px; order: -1; justify-self: start; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Banda de logos en movimiento */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); background: var(--card); padding-block: 18px; }
+.marquee .track { display: flex; gap: 48px; width: max-content; animation: slide 70s linear infinite; align-items: center; }
+.marquee:hover .track { animation-play-state: paused; }
+.marquee img { height: 56px; width: auto; border-radius: 8px; filter: grayscale(0.2); }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* Servicios */
+.svc { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; transition: transform .25s, box-shadow .25s, border-color .25s; transform-style: preserve-3d; }
+.svc:hover { box-shadow: 0 18px 40px rgba(28,43,74,.14); border-color: var(--gold); }
+.svc .ico { width: 48px; height: 48px; border-radius: 14px; background: var(--navy); display: grid; place-items: center; color: var(--gold-soft); }
+.svc p { color: var(--muted); font-size: 15px; }
+
+/* Formación IA */
+.ia-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,106,0.35); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; transition: transform .25s, background .25s; position: relative; overflow: hidden; }
+.ia-card::before { content: ""; position: absolute; inset: auto -40% -60% auto; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,175,106,.28), transparent 70%); transition: transform .4s; }
+.ia-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.09); }
+.ia-card:hover::before { transform: scale(1.6); }
+.ia-card p { color: var(--on-navy-muted); font-size: 15px; position: relative; }
+.ia-card h3 { position: relative; }
+.tag { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gold-soft); position: relative; }
+.plan { margin-top: 64px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: start; }
+.plan > * { min-width: 0; }
+@media (max-width: 860px) { .plan { grid-template-columns: 1fr; } }
+.phases { display: flex; flex-direction: column; gap: 10px; }
+.phase { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; text-align: left; width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(212,175,106,0.3); background: transparent; color: #FFFFFF; font: inherit; cursor: pointer; transition: background .2s, border-color .2s; min-height: 64px; }
+.phase .n { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--gold-soft); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--gold-soft); transition: background .2s, color .2s; }
+.phase b { font-family: var(--font-display); font-size: 18px; }
+.phase[aria-selected="true"] { background: rgba(212,175,106,0.14); border-color: var(--gold-soft); }
+.phase[aria-selected="true"] .n { background: var(--gold-soft); color: #1C2B4A; }
+.phase-panel { background: #FFFFFF; color: #1C2B4A; border-radius: 20px; padding: 32px; min-height: 100%; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 30px 60px rgba(0,0,0,.25); }
+.phase-panel .tag { color: var(--gold-ink); }
+:root[data-theme="dark"] .phase-panel .tag { color: #7A5A26; }
+.phase-panel ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: #4E5A70; }
+.phase-panel h3 { font-size: 28px; }
+
+/* Cursos */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 24px; }
+.chip-btn { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.chip-btn[aria-pressed="true"] { background: var(--navy); color: #FFFFFF; border-color: var(--navy); }
+:root[data-theme="dark"] .chip-btn[aria-pressed="true"] { background: var(--gold-soft); color: #1C2B4A; border-color: var(--gold-soft); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip-btn[aria-pressed="true"] { background: var(--gold-soft); color: #1C2B4A; border-color: var(--gold-soft); } }
+.search { flex: 1 1 220px; min-width: 0; display: flex; }
+.search input { width: 100%; min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: inherit; padding: 0 18px; }
+.count { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+.course { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 8px; transition: transform .2s, border-color .2s; }
+.course:hover { transform: translateY(-3px); border-color: var(--gold); }
+.course .cat { font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold-ink); }
+.course h3 { font-size: 17.5px; }
+.course p { color: var(--muted); font-size: 14.5px; }
+.course .new { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 6px; background: var(--gold-soft); color: #1C2B4A; }
+.note { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 32px; font-size: 15px; color: var(--muted); }
+.note strong { color: var(--fg); }
+
+/* Seguridad */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.split > * { min-width: 0; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 28px; } }
+.checks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.checks li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.checks .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--navy); color: var(--gold-soft); display: grid; place-items: center; }
+.checks b { display: block; }
+.checks span { color: var(--muted); font-size: 15px; }
+.partner-logo { background: #FFFFFF; border-radius: 12px; padding: 12px 16px; display: inline-flex; border: 1px solid var(--line); align-self: flex-start; }
+.partner-logo img { height: 38px; width: auto; }
+
+/* Experiencia: tarjetas que giran */
+.flip { perspective: 1000px; min-height: 250px; }
+.flip button { all: unset; display: block; width: 100%; height: 100%; min-height: 250px; cursor: pointer; position: relative; transform-style: preserve-3d; transition: transform .6s; border-radius: 18px; }
+.flip button:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
+.flip.on button { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 18px; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 20px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); }
+.face.front { background: #FFFFFF; align-items: center; justify-content: center; text-align: center; color: #1C2B4A; }
+.face.front img { width: 120px; height: 120px; object-fit: contain; }
+.face.front b { font-family: var(--font-display); font-size: 16px; }
+.face.front small { font-size: 12px; color: #7A5A26; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.face.back { background: var(--navy); color: #FFFFFF; transform: rotateY(180deg); justify-content: center; }
+.face.back p { color: #D3D9E4; font-size: 15px; }
+.face.back b { font-family: var(--font-display); font-size: 18px; }
+.hint { font-size: 13px; color: var(--muted); margin-top: 14px; }
+.more { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pill { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: 14px; }
+
+/* Proyectos */
+.countries { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.proj { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s, opacity .25s; }
+.proj:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(28,43,74,.14); }
+.proj.dim { opacity: .28; }
+.proj .pic { aspect-ratio: 16 / 10; overflow: hidden; background: var(--navy); }
+.proj .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.proj:hover .pic img { transform: scale(1.06); }
+.proj .body { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.proj .where { font-size: 12px; font-weight: 700; color: var(--gold-ink); letter-spacing: 1.2px; text-transform: uppercase; }
+.proj p { color: var(--muted); font-size: 15px; }
+
+/* Partners */
+.partner { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px; transition: transform .25s, border-color .25s; }
+.partner:hover { transform: translateY(-4px); border-color: var(--gold); }
+.partner .name { font-family: var(--font-display); font-size: 30px; font-weight: 700; letter-spacing: -0.4px; }
+.partner p { color: var(--muted); font-size: 15px; }
+.partner .who { font-size: 14px; font-weight: 600; color: var(--gold-ink); }
+.colab-band { position: relative; margin-top: 56px; border-radius: 22px; overflow: hidden; }
+.colab-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.colab-band .veil { position: relative; background: linear-gradient(90deg, rgba(17,28,51,.94), rgba(17,28,51,.72)); padding: clamp(28px, 5vw, 48px); display: flex; flex-direction: column; gap: 18px; color: #FFFFFF; }
+.colab-band h3 { font-size: 26px; }
+.logos-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.logos-row a { background: #FFFFFF; border-radius: 12px; padding: 10px 14px; display: inline-flex; align-items: center; transition: transform .2s; min-height: 44px; }
+.logos-row a:hover { transform: translateY(-3px) scale(1.04); }
+.logos-row img { height: 42px; width: auto; }
+
+/* Sobre nosotros */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.about > * { min-width: 0; }
+@media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+.about-photo { border-radius: 22px; overflow: hidden; position: relative; box-shadow: 0 30px 60px rgba(28,43,74,.2); }
+.about-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.about-photo span { position: absolute; left: 16px; bottom: 16px; background: rgba(17,28,51,.85); color: #FFFFFF; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
+.about-text { display: flex; flex-direction: column; gap: 16px; }
+.about-text p { color: var(--muted); }
+.people { margin-top: 44px; }
+.person { display: grid; grid-template-columns: 76px 1fr; gap: 18px; padding: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; align-items: start; }
+.person > div { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.avatar { width: 76px; height: 76px; border-radius: 50%; background: var(--navy); color: #FFFFFF; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 26px; border: 3px solid var(--gold-soft); }
+.role { font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-ink); }
+.person p { color: var(--muted); font-size: 15px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.badge { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--band); border: 1px solid var(--line); }
+
+/* Contacto */
+.contact { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; }
+.contact > * { min-width: 0; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
+.mailbox { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(212,175,106,.4); border-radius: 14px; padding: 14px 16px; }
+.mailbox code { font-family: var(--font-body); font-size: 17px; font-weight: 600; color: #FFFFFF; overflow-wrap: anywhere; user-select: all; }
+.copy { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--gold-soft); background: transparent; color: var(--gold-soft); font: inherit; font-weight: 600; cursor: pointer; }
+form { display: flex; flex-direction: column; gap: 14px; background: var(--navy-2); padding: 26px; border-radius: 18px; border: 1px solid rgba(212,175,106,0.35); }
+label { font-size: 14px; font-weight: 600; display: flex; flex-direction: column; gap: 6px; color: #FFFFFF; }
+input, select, textarea { font: inherit; font-weight: 400; color: #1C2B4A; background: #FFFFFF; border: 1px solid #C9D0DC; border-radius: 10px; padding: 12px; min-height: 48px; width: 100%; }
+textarea { min-height: 120px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+.form-msg { font-size: 15px; color: #FFFFFF; min-height: 1.4em; }
+.privacy { font-size: 13px; color: #C9D0DC; }
+
+footer { background: var(--navy-deep); color: #C9D0DC; padding-block: 36px; font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; align-items: center; }
+footer a { text-decoration: none; color: #FFFFFF; }
+footer a:hover { color: var(--gold-soft); }
+.to-top { position: fixed; right: max(16px, calc(env(safe-area-inset-right, 0px) + 16px)); bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px)); width: 48px; height: 48px; border-radius: 50%; background: var(--gold-soft); color: #1C2B4A; display: grid; place-items: center; text-decoration: none; font-weight: 700; box-shadow: 0 10px 24px rgba(0,0,0,.25); z-index: 25; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="tri" viewBox="0 0 120 120">
+      <g transform="translate(60 59) scale(0.72) translate(-60 -64)" stroke-linecap="round">
+        <line x1="28" y1="88" x2="60" y2="28" stroke="currentColor" stroke-width="5"/>
+        <line x1="60" y1="28" x2="92" y2="88" stroke="currentColor" stroke-width="5"/>
+        <line x1="28" y1="88" x2="92" y2="88" stroke="currentColor" stroke-width="5"/>
+        <line x1="60" y1="28" x2="60" y2="66" style="stroke:var(--accent, #D4AF6A)" stroke-width="3.5"/>
+        <line x1="28" y1="88" x2="60" y2="66" style="stroke:var(--accent, #D4AF6A)" stroke-width="3.5"/>
+        <line x1="92" y1="88" x2="60" y2="66" style="stroke:var(--accent, #D4AF6A)" stroke-width="3.5"/>
+        <circle cx="60" cy="28" r="10" fill="currentColor"/>
+        <circle cx="28" cy="88" r="10" fill="currentColor"/>
+        <circle cx="92" cy="88" r="10" fill="currentColor"/>
+        <circle cx="60" cy="66" r="8" style="fill:var(--accent, #D4AF6A)"/>
+      </g>
+    </symbol>
+    <symbol id="rings" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="56" fill="none" style="stroke:var(--accent, #D4AF6A)" stroke-width="2.5"/>
+      <circle cx="60" cy="60" r="49" fill="none" style="stroke:var(--accent, #D4AF6A)" stroke-width="1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="IPL, ir al inicio">
+      <svg width="46" height="46" viewBox="0 0 120 120" aria-hidden="true" style="color:#FFFFFF"><use href="#rings"/><use href="#tri"/></svg>
+      <div><b>IPL</b><span>International Projects for Learning<br>&amp; Educational Coaching</span></div>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" aria-label="Secciones">
+      <a href="#ia">Formación IA</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#partners">Partners</a>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="text">
+        <div class="eyebrow">IPL &amp; Educational Coaching · desde 2014</div>
+        <h1>Expertos en formar docentes en <span class="rotor" id="rotor"><span>inteligencia artificial</span><span class="off" aria-hidden="true">tecnología Apple</span><span class="off" aria-hidden="true">metodologías activas</span><span class="off" aria-hidden="true">programación y robótica</span><span class="off" aria-hidden="true">proyectos internacionales</span></span></h1>
+        <p class="lead">Asesoramiento y formación tecnológica y metodológica para colegios. Hemos acompañado a más de 20 centros en España y desarrollado proyectos en Italia, Estados Unidos y México.</p>
+        <div class="actions">
+          <a class="btn gold" href="#ia">Formación en IA</a>
+          <a class="btn line" href="#cursos">Ver todos los cursos</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b data-count="20" data-prefix="+">+20</b><span>colegios formados</span></div>
+          <div class="stat"><b data-count="4">4</b><span>países con proyectos</span></div>
+          <div class="stat"><b data-count="30" data-prefix="+">+30</b><span>cursos y talleres</span></div>
+          <div class="stat"><b>2014</b><span>año de fundación</span></div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Símbolo de IPL" style="color:#FFFFFF"><g class="ring"><use href="#rings"/></g><use href="#tri"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Centros y entidades con los que hemos trabajado">
+    <div class="track" id="marquee-track">
+      <img src="img/altaviana.webp" alt="Altaviana">
+      <img src="img/feceval.webp" alt="FECEVAL">
+      <img src="img/efa-campico.webp" alt="EFA El Campico">
+      <img src="img/efa-torrealedua.webp" alt="EFA Torrealedua">
+      <img src="img/maristas.webp" alt="Maristas Santa María Villalba">
+      <img src="img/logos.webp" alt="Logos International School">
+      <img src="img/nsr.webp" alt="Colegio Nuestra Señora del Recuerdo">
+      <img src="img/imt-lazarus.webp" alt="IMT Lazarus">
+      <img src="img/nunsys.webp" alt="Nunsys">
+      <img src="img/ktuin.webp" alt="K-tuin">
+      <img src="img/flipped.webp" alt="The Flipped Classroom">
+      <img src="img/casio.webp" alt="Casio">
+      <img src="img/polygon.webp" alt="Polygon">
+      <img src="img/hadock.webp" alt="Hadock">
+    </div>
+  </div>
+
+  <section class="band dark" id="ia">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Nuestra formación estrella</div>
+        <h2>Inteligencia artificial para docentes</h2>
+        <p class="lead">Formación práctica para que cada profesor use la IA en su día a día: preparar clases, crear materiales, corregir y dar feedback, atender a la diversidad y enseñar a los alumnos a usarla con criterio.</p>
+      </div>
+      <div class="grid g3">
+        <article class="ia-card"><div class="tag">6.1 · Todo el claustro</div><h3>Primeros pasos con la IA en el aula</h3><p>Qué es y qué no es la IA, cómo pedirle bien las cosas y tres reglas de oro. Cada docente sale con su primer material hecho y revisado.</p></article>
+        <article class="ia-card"><div class="tag">6.2 · Preparar</div><h3>Materiales y programaciones con Claude</h3><p>Un proyecto por materia con tus normas y tu programación: fichas, exámenes y rúbricas alineados con tus criterios, con versiones de refuerzo y ampliación.</p></article>
+        <article class="ia-card"><div class="tag">6.3 · Evaluar</div><h3>Corregir y dar feedback formativo</h3><p>De la foto del examen al comentario para cada alumno: corrección con tus criterios, revisión docente y tabla de notas para tu cuaderno.</p></article>
+        <article class="ia-card"><div class="tag">6.4 · Inclusión</div><h3>Atención a la diversidad con IA</h3><p>Lectura fácil, mínimos, ampliación e idioma: un mismo material adaptado a cada alumno en minutos, sin datos personales.</p></article>
+        <article class="ia-card"><div class="tag">6.5 · Organizar</div><h3>Organizar el trabajo docente</h3><p>Planificación semanal, informes para entrevistas con familias y comunicaciones, con menos horas delante de la pantalla.</p></article>
+        <article class="ia-card"><div class="tag">6.6 · Crear</div><h3>Recursos interactivos y visuales</h3><p>Presentaciones, juegos de repaso y pequeñas webs para el aula, compartidas por enlace en el iPad o la pizarra digital.</p></article>
+        <article class="ia-card"><div class="tag">6.7 · Uso responsable</div><h3>IA, ética, privacidad y alumnado</h3><p>Protección de datos, errores y sesgos, edades de uso y un borrador de normas de uso de la IA para el colegio.</p></article>
+        <article class="ia-card"><div class="tag">6.8 · Equipos directivos</div><h3>Plan de IA para el centro</h3><p>Cómo implantar la IA en el colegio: prioridades, ritmos, acompañamiento al claustro y evaluación del plan.</p></article>
+      </div>
+
+      <div class="plan">
+        <div class="head" style="margin-bottom:0">
+          <div class="eyebrow">Plan de formación en IA para colegios</div>
+          <h2 style="font-size:clamp(26px,3.4vw,36px)">Un plan a medida, en cinco fases</h2>
+          <div class="phases" role="tablist" aria-label="Fases del plan">
+            <button class="phase" role="tab" id="ph-1" aria-selected="true" aria-controls="phase-panel" data-i="0"><span class="n">1</span><b>Diagnóstico</b></button>
+            <button class="phase" role="tab" id="ph-2" aria-selected="false" aria-controls="phase-panel" data-i="1"><span class="n">2</span><b>Formación inicial</b></button>
+            <button class="phase" role="tab" id="ph-3" aria-selected="false" aria-controls="phase-panel" data-i="2"><span class="n">3</span><b>Talleres por áreas</b></button>
+            <button class="phase" role="tab" id="ph-4" aria-selected="false" aria-controls="phase-panel" data-i="3"><span class="n">4</span><b>Acompañamiento</b></button>
+            <button class="phase" role="tab" id="ph-5" aria-selected="false" aria-controls="phase-panel" data-i="4"><span class="n">5</span><b>Normas y evaluación</b></button>
+          </div>
+        </div>
+        <div class="phase-panel" id="phase-panel" role="tabpanel" aria-live="polite">
+          <div class="tag" id="pp-tag">Fase 1</div>
+          <h3 id="pp-title">Diagnóstico</h3>
+          <p id="pp-text">Conocemos el punto de partida del colegio antes de proponer nada.</p>
+          <ul id="pp-list">
+            <li>Cuestionario al claustro sobre uso y confianza con la IA</li>
+            <li>Revisión de dispositivos, plataformas y normas actuales</li>
+            <li>Objetivos del equipo directivo para el curso</li>
+          </ul>
+          <a class="btn navy" href="#contacto" style="align-self:flex-start">Solicitar el plan para mi colegio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Catálogo IPL · seis bloques</div>
+        <h2>Elige tus bloques</h2>
+        <p class="lead">El catálogo está organizado en seis bloques. Cada colegio elige el bloque o los bloques que quiere trabajar y avanza a su ritmo: uno por trimestre, uno por curso o los que necesite. Una red de profesionales, líderes educativos y docentes dirige cada formación, y las sesiones se adaptan a las necesidades del centro.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip-btn" aria-pressed="true" data-f="todos">Todos</button>
+        <button class="chip-btn" aria-pressed="false" data-f="apple">1 · Apple e iPad</button>
+        <button class="chip-btn" aria-pressed="false" data-f="google">2 · Google</button>
+        <button class="chip-btn" aria-pressed="false" data-f="steam">3 · Programación y STEAM</button>
+        <button class="chip-btn" aria-pressed="false" data-f="metodo">4 · Metodologías y evaluación</button>
+        <button class="chip-btn" aria-pressed="false" data-f="gestion">5 · Dispositivos y seguridad</button>
+        <button class="chip-btn" aria-pressed="false" data-f="ia">6 · Inteligencia artificial</button>
+        <label class="search" for="q" style="color:inherit"><span class="sr" style="position:absolute;left:-9999px">Buscar un curso</span><input id="q" type="search" placeholder="Buscar un curso…" autocomplete="off"></label>
+      </div>
+      <p class="count" id="count" role="status"></p>
+      <div class="grid g3" id="course-grid"></div>
+      <div class="note">
+        <span><strong>Duración:</strong> en el bloque de IA, cada formación es una sesión práctica de 1 hora (o 45 minutos); el resto, talleres de 4 a 6 horas adaptables al centro.</span>
+        <span><strong>Bonificables</strong> a través de FUNDAE.</span>
+        <span><strong>¿No encuentras lo que buscas?</strong> Añadimos cursos constantemente: <a href="#contacto">pregúntanos</a>.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Todo lo que necesitas para avanzar</div>
+        <h2>Profesores y expertos en pedagogía</h2>
+      </div>
+      <div class="grid g3">
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M6 10.5V16c2 1.6 4 2.4 6 2.4s4-.8 6-2.4v-5.5"/></svg></div><h3>Competencia Digital</h3><p>Creadores del máster en Competencia Digital con especialidad en tecnología Apple.</p></article>
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Expertos en tecnología Apple</h3><p>Líderes en colegios con tecnología Apple aplicada a la educación.</p></article>
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a7 7 0 017 7c0 3-2 5-3 6v3H8v-3c-1-1-3-3-3-6a7 7 0 017-7z"/><path d="M9 22h6"/></svg></div><h3>Inteligencia artificial</h3><p>Formación y acompañamiento para integrar la IA en el trabajo docente y en el aula.</p></article>
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l4-4 3 3 5-6"/></svg></div><h3>Expertos en formación</h3><p>Te ayudamos a planificar la formación que necesitas para desarrollar un gran proyecto en tu institución.</p></article>
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></div><h3>Asesoramiento técnico y pedagógico</h3><p>Trabajamos con distintas empresas para que la tecnología no sea un problema, sino una solución.</p></article>
+        <article class="svc tilt"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Cursos bonificables</h3><p>Todos nuestros cursos pueden bonificarse a través de FUNDAE.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="seguridad">
+    <div class="wrap split">
+      <div class="head" style="margin-bottom:0">
+        <div class="eyebrow">Con nuestro partner IMT Lazarus</div>
+        <h2>Formación en seguridad en la red</h2>
+        <p class="lead">Asesoramos a los colegios en la formación sobre seguridad en internet para profesores, familias y alumnos.</p>
+        <div class="partner-logo"><img src="img/imt-lazarus.webp" alt="IMT Lazarus"></div>
+      </div>
+      <ul class="checks">
+        <li><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z"/></svg></span><div><b>Para el claustro</b><span>Riesgos de la red y cómo prevenirlos en el aula.</span></div></li>
+        <li><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 20c0-2.2 1.3-4 3-4.6"/></svg></span><div><b>Para las familias</b><span>Pautas para acompañar a los hijos en el uso de pantallas e internet.</span></div></li>
+        <li><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span><div><b>Para el centro</b><span>Asesoramiento en la protección del entorno digital del colegio.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band alt" id="experiencia">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Algunas experiencias</div>
+        <h2>Centros donde hemos formado al profesorado</h2>
+        <p class="lead">Hemos desarrollado procesos de formación del profesorado en más de 20 colegios de toda España.</p>
+      </div>
+      <div class="grid g4" id="flips">
+        <div class="flip"><button aria-label="Altaviana, Valencia: ver detalle"><div class="face front"><img src="img/altaviana.webp" alt=""><b>Altaviana</b><small>Valencia</small></div><div class="face back"><b>Altaviana</b><p>Plan de formación del profesorado.</p></div></button></div>
+        <div class="flip"><button aria-label="FECEVAL: ver detalle"><div class="face front"><img src="img/feceval.webp" alt=""><b>FECEVAL</b><small>Comunidad Valenciana</small></div><div class="face back"><b>FECEVAL</b><p>Acuerdo de colaboración en formación con la Federación de Centros de Enseñanza.</p></div></button></div>
+        <div class="flip"><button aria-label="EFA El Campico, Alicante: ver detalle"><div class="face front"><img src="img/efa-campico.webp" alt=""><b>EFA El Campico</b><small>Alicante</small></div><div class="face back"><b>EFA El Campico</b><p>Formación integral del profesorado e implantación tecnológica.</p></div></button></div>
+        <div class="flip"><button aria-label="EFA Torrealedua y EFA La Malvesía: ver detalle"><div class="face front"><img src="img/efa-torrealedua.webp" alt=""><b>EFA Torrealedua y EFA La Malvesía</b><small>Valencia</small></div><div class="face back"><b>EFA Torrealedua y La Malvesía</b><p>Proyecto de formación y transformación metodológica.</p></div></button></div>
+        <div class="flip"><button aria-label="Maristas Santa María, Villalba: ver detalle"><div class="face front"><img src="img/maristas.webp" alt=""><b>Maristas Santa María</b><small>Villalba</small></div><div class="face back"><b>Colegio Maristas Santa María</b><p>Formación y asesoramiento en implantación de tecnología.</p></div></button></div>
+        <div class="flip"><button aria-label="Colegio Logos, Madrid: ver detalle"><div class="face front"><img src="img/logos.webp" alt=""><b>Colegio Logos</b><small>Madrid</small></div><div class="face back"><b>Colegio Logos</b><p>Proyecto de cambio metodológico y formación.</p></div></button></div>
+        <div class="flip"><button aria-label="Nuestra Señora del Recuerdo, Madrid: ver detalle"><div class="face front"><img src="img/nsr.webp" alt=""><b>Nuestra Señora del Recuerdo</b><small>Madrid</small></div><div class="face back"><b>Colegio Nuestra Señora del Recuerdo</b><p>Proyecto de asesoramiento, formación e implantación de tecnología Apple.</p></div></button></div>
+        <div class="flip"><button aria-label="Más de 20 colegios: ver detalle"><div class="face front" style="background:var(--navy);color:#FFFFFF"><svg width="110" height="110" viewBox="0 0 120 120" aria-hidden="true" style="color:#FFFFFF"><use href="#rings"/><use href="#tri"/></svg><b style="font-size:30px">+20</b><small style="color:#D4AF6A">colegios en España</small></div><div class="face back"><b>Formación en colegios e instituciones</b><p>Procesos de formación del profesorado en más de 20 colegios en toda España.</p></div></button></div>
+      </div>
+      <p class="hint">Toca cada tarjeta para ver qué hicimos en el centro.</p>
+    </div>
+  </section>
+
+  <section class="band" id="proyectos">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Otros proyectos realizados</div>
+        <h2>Nuestra experiencia lo dice todo</h2>
+      </div>
+      <div class="countries" id="countries">
+        <button class="chip-btn" aria-pressed="true" data-c="todos">Todos</button>
+        <button class="chip-btn" aria-pressed="false" data-c="es">España</button>
+        <button class="chip-btn" aria-pressed="false" data-c="it">Italia</button>
+        <button class="chip-btn" aria-pressed="false" data-c="us">EE. UU.</button>
+        <button class="chip-btn" aria-pressed="false" data-c="mx">México</button>
+      </div>
+      <div class="grid g3" id="proj-grid">
+        <article class="proj" data-c="es it us mx"><div class="pic"><img src="img/internacionales.webp" alt="Alumnos conectados en un proyecto internacional"></div><div class="body"><div class="where">España · Italia · EE. UU. · México</div><h3>Proyectos escolares internacionales</h3><p>Proyectos cooperativos en tiempo real entre estudiantes de distintos países. Proyectos culturales y científicos.</p></div></article>
+        <article class="proj" data-c="us"><div class="pic"><img src="img/nasa.webp" alt="Astronauta en el espacio"></div><div class="body"><div class="where">California · EE. UU. · Experiencia realizada</div><h3>IPL Summer</h3><p>Programa que organizamos para alumnos de bachillerato y universitarios, con participación en cursos y proyectos educativos con la NASA, Apple y DreamWorks Animation.</p></div></article>
+        <article class="proj" data-c="us"><div class="pic"><img src="img/fresno.webp" alt="Grupo de IPL en Fresno State"></div><div class="body"><div class="where">Fresno State · EE. UU.</div><h3>Estancias en universidades</h3><p>Visitas y trabajo con universidades de Estados Unidos dentro del programa IPL Summer.</p></div></article>
+        <article class="proj" data-c="es us"><div class="pic"><img src="img/congresos.webp" alt="Equipo de IPL en un congreso educativo"></div><div class="body"><div class="where">España · EE. UU.</div><h3>Congresos educativos</h3><p>Participación activa en congresos internacionales sobre tecnología educativa y casos de éxito en educación.</p></div></article>
+        <article class="proj" data-c="es"><div class="pic"><img src="img/master.webp" alt="Mano usando una tableta"></div><div class="body"><div class="where">España</div><h3>Máster en Competencia Digital</h3><p>Creación y seguimiento del máster en Competencia Digital, experto en tecnología Apple: niveles básico, medio y experto.</p></div></article>
+        <article class="proj" data-c="es"><div class="pic"><img src="img/portada.webp" alt="Material escolar sobre una pizarra"></div><div class="body"><div class="where">España</div><h3>Formación en colegios e instituciones</h3><p>Procesos de formación del profesorado en más de 20 colegios de toda España.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="partners">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Partners</div>
+        <h2>Trabajamos con</h2>
+      </div>
+      <div class="grid g3">
+        <article class="partner tilt">
+          <div class="name">Knotion</div>
+          <div class="who">Fundada por Noemí «Mimi» Valencia</div>
+          <p>Ecosistema de aprendizaje para colegios nacido en México en 2014, con contenidos, pedagogía basada en retos y tecnología. Presente en México y Centroamérica. IPL es partner de Knotion.</p>
+        </article>
+        <article class="partner tilt">
+          <div class="name">EdTechAdv</div>
+          <div class="who">Asesoramiento en tecnología educativa</div>
+          <p>IPL es partner de EdTechAdv en el asesoramiento de tecnología educativa a centros.</p>
+        </article>
+        <article class="partner tilt">
+          <div class="partner-logo" style="margin-bottom:2px"><img src="img/imt-lazarus.webp" alt="IMT Lazarus"></div>
+          <div class="who">Seguridad en la red</div>
+          <p>IPL es partner de IMT Lazarus en formación y asesoramiento sobre seguridad en la red.</p>
+        </article>
+      </div>
+      <div class="colab-band">
+        <img src="img/colaboradores.webp" alt="">
+        <div class="veil">
+          <div class="eyebrow">Colaboran con nosotros</div>
+          <h3>Sabemos cómo mejorar tu proyecto</h3>
+          <div class="logos-row">
+            <a href="https://hadock.es" target="_blank" rel="noopener"><img src="img/hadock.webp" alt="Hadock"></a>
+            <a href="https://nunsys.com" target="_blank" rel="noopener"><img src="img/nunsys.webp" alt="Nunsys"></a>
+            <a href="https://www.k-tuin.com" target="_blank" rel="noopener"><img src="img/ktuin.webp" alt="K-tuin"></a>
+            <a href="https://www.theflippedclassroom.es" target="_blank" rel="noopener"><img src="img/flipped.webp" alt="The Flipped Classroom"></a>
+            <a href="https://www.edu-casio.es" target="_blank" rel="noopener"><img src="img/casio.webp" alt="Casio"></a>
+            <a href="https://www.polygoneducation.com" target="_blank" rel="noopener"><img src="img/polygon.webp" alt="Polygon"></a>
+          </div>
+          <a class="btn gold" href="#contacto" style="align-self:flex-start">Consúltanos ahora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="nosotros">
+    <div class="wrap">
+      <div class="about">
+        <div class="about-photo"><img src="img/equipo.webp" alt="El equipo de IPL en una videoconferencia"><span>Conoce a nuestro equipo</span></div>
+        <div class="about-text">
+          <div class="eyebrow">Sobre nosotros · Nuestra misión es ayudarte</div>
+          <h2>IPL &amp; Educational Coaching</h2>
+          <p>IPL nació en 2014 con la idea de aportar un fundamento pedagógico a los proyectos tecnológicos que empezaban a instaurarse en los colegios de España.</p>
+          <p>Nuestros formadores son líderes pedagógicos que han diseñado, creado y dirigido proyectos de tecnología educativa en más de 20 colegios. La metodología IPL y nuestro plan de formación integral nos han convertido en referentes en formación en tecnología educativa y metodologías innovadoras.</p>
+          <p>Nuestro equipo de investigación y crecimiento cuenta con el apoyo de entidades educativas de Estados Unidos y México. Hoy llevamos esa experiencia a la inteligencia artificial.</p>
+        </div>
+      </div>
+      <div class="grid g2 people">
+        <article class="person"><div class="avatar" aria-hidden="true">SD</div><div><div class="role">CEO y cofundadora</div><h3>Sonina Darder</h3><p>Docente desde 1989, coordinadora de matemáticas y de robótica y pensamiento computacional. Asesora a centros educativos en metodologías con tecnología e inteligencia artificial.</p><div class="badges"><span class="badge">Apple Distinguished Educator</span><span class="badge">100+ Global Flipped Leaders</span></div></div></article>
+        <article class="person"><div class="avatar" aria-hidden="true">MA</div><div><div class="role">Cofundador</div><h3>Miguel Asensio</h3><p>Cofundador de International Projects for Learning &amp; Educational Coaching.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" id="contacto">
+    <div class="wrap contact">
+      <div class="contact-info">
+        <div class="eyebrow">Contáctanos</div>
+        <h2>Hablemos de tu colegio</h2>
+        <p class="lead">Cuéntanos qué necesitáis y te proponemos un plan de formación a medida.</p>
+        <p style="font-family:var(--font-display);font-size:22px">Sonina Darder · CEO</p>
+        <div class="mailbox"><code id="mail">sdarder@ipforlearning.com</code><button class="copy" id="copy" type="button">Copiar</button></div>
+        <a class="btn line" href="#" id="recursos" style="align-self:flex-start">Recursos Sonina</a>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="row2">
+          <label for="f-name">Nombre<input id="f-name" name="nombre" autocomplete="name" required></label>
+          <label for="f-school">Colegio o institución<input id="f-school" name="colegio" autocomplete="organization"></label>
+        </div>
+        <div class="row2">
+          <label for="f-mail">Correo electrónico<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
+          <label for="f-topic">Me interesa
+            <select id="f-topic" name="interes">
+              <option>Formación en IA para docentes</option>
+              <option>Plan de formación en IA para el colegio</option>
+              <option>Cursos del catálogo</option>
+              <option>Seguridad en la red</option>
+              <option>Asesoramiento técnico y pedagógico</option>
+              <option>Otro tema</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-msg">Mensaje<textarea id="f-msg" name="mensaje" required></textarea></label>
+        <button class="btn gold" type="submit" style="align-self:flex-start">Enviar consulta</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+        <p class="privacy">Usaremos tus datos solo para responder a tu consulta.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> International Projects for Learning &amp; Educational Coaching</span>
+    <span>Cursos bonificables a través de FUNDAE</span>
+    <a href="#inicio">Volver arriba</a>
+  </div>
+</footer>
+<a class="to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var CONFIG = { formulario: "" }; // dirección de Formspree (gratis) cuando se publique
+
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+
+  /* Menú móvil */
+  var mb = document.getElementById("menu-btn"), menu = document.getElementById("menu");
+  mb.addEventListener("click", function () { var o = menu.classList.toggle("open"); mb.setAttribute("aria-expanded", o ? "true" : "false"); });
+  menu.addEventListener("click", function (e) { if (e.target.tagName === "A") { menu.classList.remove("open"); mb.setAttribute("aria-expanded", "false"); } });
+
+  /* Red de nodos de la portada */
+  var cv = document.getElementById("net"), ctx = cv.getContext("2d"), pts = [], mouse = { x: -999, y: -999 }, W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function size() { var r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); var n = Math.round(Math.min(90, W * H / 14000)); pts = []; for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, g: Math.random() < .22 }); }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      var dx = p.x - mouse.x, dy = p.y - mouse.y, dm = Math.sqrt(dx * dx + dy * dy);
+      if (dm < 140 && !reduce) { p.x += dx / dm * 1.2; p.y += dy / dm * 1.2; }
+      for (var j = i + 1; j < pts.length; j++) { var q = pts[j], ex = p.x - q.x, ey = p.y - q.y, d = ex * ex + ey * ey; if (d < 16000) { ctx.strokeStyle = "rgba(212,175,106," + (0.28 * (1 - d / 16000)).toFixed(3) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); } }
+      ctx.fillStyle = p.g ? "rgba(212,175,106,.9)" : "rgba(255,255,255,.55)"; ctx.beginPath(); ctx.arc(p.x, p.y, p.g ? 3 : 2, 0, 6.283); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  size(); draw(); var lastW = W; window.addEventListener("resize", function () { var w = cv.getBoundingClientRect().width; if (Math.abs(w - lastW) < 2) return; lastW = w; size(); if (reduce) draw(); });
+  cv.parentElement.addEventListener("pointermove", function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  cv.parentElement.addEventListener("pointerleave", function () { mouse.x = mouse.y = -999; });
+
+  /* Palabra que cambia */
+  /* Todas las palabras ocupan el mismo hueco: solo cambia cuál se ve, así el texto de alrededor no se mueve */
+  var rw = document.querySelectorAll("#rotor > span"), wi = 0;
+  if (!reduce && rw.length > 1) setInterval(function () {
+    rw[wi].classList.add("off"); rw[wi].setAttribute("aria-hidden", "true");
+    wi = (wi + 1) % rw.length;
+    rw[wi].classList.remove("off"); rw[wi].removeAttribute("aria-hidden");
+  }, 3500);
+
+  /* Contadores */
+  if (!reduce) document.querySelectorAll("[data-count]").forEach(function (b) { var to = +b.dataset.count, pre = b.dataset.prefix || "", t0 = null; function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 1400); b.textContent = pre + Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); } requestAnimationFrame(step); });
+
+  /* Fases del plan */
+  var PH = [
+    ["Diagnóstico", "Conocemos el punto de partida del colegio antes de proponer nada.", ["Cuestionario al claustro sobre uso y confianza con la IA", "Revisión de dispositivos, plataformas y normas actuales", "Objetivos del equipo directivo para el curso"]],
+    ["Formación inicial", "Sesiones prácticas para todo el claustro, organizadas por etapas.", ["Qué es la IA generativa y cómo pedirle las cosas", "Primeros usos seguros en el trabajo diario", "Cada docente sale con materiales creados por él"]],
+    ["Talleres por áreas", "Aplicaciones concretas en cada materia y nivel.", ["Matemáticas, lengua, idiomas, ciencias…", "Atención a la diversidad y adaptaciones", "Corrección y feedback con IA"]],
+    ["Acompañamiento", "Seguimiento en el aula y resolución de dudas reales.", ["Sesiones de seguimiento con los equipos", "Banco de buenas prácticas del colegio", "Apoyo a los coordinadores TIC"]],
+    ["Normas y evaluación", "Política de uso de la IA en el centro y revisión de resultados.", ["Normas de uso para profesores y alumnos", "Protección de datos y autoría", "Memoria final y propuesta para el curso siguiente"]]
+  ];
+  var tabs = document.querySelectorAll(".phase");
+  tabs.forEach(function (t) { t.addEventListener("click", function () {
+    var i = +t.dataset.i; tabs.forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+    document.getElementById("pp-tag").textContent = "Fase " + (i + 1);
+    document.getElementById("pp-title").textContent = PH[i][0];
+    document.getElementById("pp-text").textContent = PH[i][1];
+    var ul = document.getElementById("pp-list"); ul.textContent = ""; PH[i][2].forEach(function (s) { var li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
+  }); });
+
+  /* Catálogo de cursos */
+  var C = [
+    ["apple", "Aprende con iPad", "Introducción a los recursos y al uso del iPad en el aula."],
+    ["apple", "Flujos de trabajo con iPad", "Recursos para comunicarnos de forma eficaz en el aula con nuestros alumnos."],
+    ["apple", "Ser productivo con iPad", "Herramientas para mejorar la productividad en el aula y en el trabajo diario."],
+    ["apple", "Ser creativo con iPad", "Herramientas que potencian la creatividad de profesores y alumnos."],
+    ["apple", "Libros digitales interactivos", "Crear libros multimedia con Pages y Book Creator (antes con iBooks Author)."],
+    ["apple", "Apple Classroom y Schoolwork", "Gestión del aula, flujo de trabajo y seguimiento del alumnado (antes con iTunes U)."],
+    ["apple", "Swift Playgrounds", "Todo lo necesario para aprender a programar desde el iPad."],
+    ["apple", "Final Cut Pro", "Taller de edición de vídeo con la herramienta profesional de Apple."],
+    ["apple", "Metodologías cooperativas con iPad", "Trabajo cooperativo y proyectos en el aula con iPad."],
+    ["google", "Google Workspace for Education", "Las herramientas de Google aplicadas a la educación."],
+    ["google", "Google Classroom y Drive", "Gestión del aula y flujo de trabajo con Google."],
+    ["google", "Google Drive", "Gestión integral de documentos en la nube."],
+    ["steam", "Programación y robótica en el aula", "Taller práctico para desarrollar estas destrezas en el colegio."],
+    ["steam", "Realidad aumentada y programación", "Iniciación a la realidad aumentada como recurso educativo y a la programación desde iPad."],
+    ["steam", "Diseño e impresión 3D", "Nuevos sistemas de aprendizaje basados en la impresión 3D. Taller práctico."],
+    ["steam", "Las aulas del siglo XXI", "Talleres de programación, robótica, códigos QR y más."],
+    ["metodo", "Flipped Classroom", "Aprendizaje completo de la metodología de la clase invertida."],
+    ["metodo", "Aprendizaje Basado en Problemas", "Base de las nuevas metodologías y sistema de aprendizaje innovador."],
+    ["metodo", "Inteligencias múltiples", "De la teoría a la práctica para llegar a cada alumno."],
+    ["metodo", "Proyectos de Comprensión y Rutinas de pensamiento", "Las teorías del pensamiento eficaz llevadas al aula."],
+    ["metodo", "Programación neurolingüística y neurociencia", "Las bases más importantes desde un punto de vista práctico y educativo."],
+    ["metodo", "Herramientas de evaluación y portfolio", "Todo lo necesario para una evaluación eficaz y el portfolio del alumno."],
+    ["metodo", "Programación por competencias", "Sesión de trabajo para desarrollar con eficacia este modelo de programación."],
+    ["gestion", "Gestión de dispositivos (MDM)", "Gestión de iPad y dispositivos con Jamf School, Workspace ONE o Meraki."],
+    ["gestion", "Implantación del iPad en el colegio", "Pasos técnicos iniciales para que la tecnología no sea un problema."],
+    ["gestion", "Seguridad en la red", "Con IMT Lazarus: formación para claustro, familias y alumnos."],
+    ["ia", "6.1 Primeros pasos con la IA en el aula", "Para todo el claustro: qué es la IA, cómo pedirle bien las cosas y uso seguro.", 1],
+    ["ia", "6.2 Preparar materiales y programaciones con Claude", "Un proyecto por materia con tu programación: fichas, exámenes y rúbricas alineados.", 1],
+    ["ia", "6.3 Corregir y dar feedback formativo con IA", "Corrección con tus criterios y un comentario útil para cada alumno.", 1],
+    ["ia", "6.4 Atención a la diversidad con IA", "Lectura fácil, mínimos, ampliación e idioma en minutos.", 1],
+    ["ia", "6.5 Organizar el trabajo docente con IA", "Planificación, informes para familias y comunicaciones.", 1],
+    ["ia", "6.6 Crear recursos interactivos y visuales con IA", "Presentaciones, juegos de repaso y webs para el aula.", 1],
+    ["ia", "6.7 IA, ética, privacidad y alumnado", "Protección de datos, sesgos y normas de uso para el colegio.", 1],
+    ["ia", "6.8 Plan de IA para el centro", "Para equipos directivos y coordinación TIC.", 1]
+  ];
+  var CAT = { apple: "Bloque 1 · Apple e iPad", google: "Bloque 2 · Google para Educación", steam: "Bloque 3 · Programación, robótica y STEAM", metodo: "Bloque 4 · Metodologías y evaluación", gestion: "Bloque 5 · Gestión de dispositivos y seguridad", ia: "Bloque 6 · Inteligencia artificial para docentes" };
+  var grid = document.getElementById("course-grid"), q = document.getElementById("q"), countEl = document.getElementById("count"), filt = "todos";
+  function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function render() {
+    var term = norm(q.value.trim()); grid.textContent = ""; var n = 0, last = "";
+    C.forEach(function (c) {
+      if (filt !== "todos" && c[0] !== filt) return;
+      if (term && norm(c[1] + " " + c[2]).indexOf(term) < 0) return;
+      n++;
+      if (c[0] !== last) { last = c[0]; var bh = document.createElement("h3"); bh.textContent = CAT[c[0]]; bh.style.cssText = "grid-column:1/-1;margin:18px 0 0;font-size:22px;color:var(--gold-ink)"; grid.appendChild(bh); }
+      var a = document.createElement("article"); a.className = "course";
+      var k = document.createElement("div"); k.className = "cat"; k.textContent = CAT[c[0]]; a.appendChild(k);
+      if (c[3]) { var nw = document.createElement("span"); nw.className = "new"; nw.textContent = "NUEVO"; a.appendChild(nw); }
+      var h = document.createElement("h3"); h.textContent = c[1]; a.appendChild(h);
+      var p = document.createElement("p"); p.textContent = c[2]; a.appendChild(p);
+      grid.appendChild(a);
+    });
+    countEl.textContent = n === 0 ? "No hay cursos con ese nombre. Escríbenos y te lo preparamos." : (n === 1 ? "1 formación" : n + " formaciones") + (filt === "todos" && !term ? " en 6 bloques" : "");
+  }
+  document.querySelectorAll("#filters .chip-btn").forEach(function (b) { b.addEventListener("click", function () { filt = b.dataset.f; document.querySelectorAll("#filters .chip-btn").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); render(); }); });
+  q.addEventListener("input", render); render();
+
+  /* Tarjetas que giran */
+  document.querySelectorAll(".flip button").forEach(function (b) { b.addEventListener("click", function () { b.parentElement.classList.toggle("on"); }); });
+
+  /* Filtro de proyectos por país */
+  document.querySelectorAll("#countries .chip-btn").forEach(function (b) { b.addEventListener("click", function () {
+    var c = b.dataset.c; document.querySelectorAll("#countries .chip-btn").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    document.querySelectorAll("#proj-grid .proj").forEach(function (p) { p.classList.toggle("dim", c !== "todos" && p.dataset.c.split(" ").indexOf(c) < 0); });
+  }); });
+
+  /* Inclinación 3D al pasar el ratón */
+  if (!reduce && window.matchMedia("(hover: hover)").matches) document.querySelectorAll(".tilt").forEach(function (t) {
+    t.addEventListener("pointermove", function (e) { var r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; t.style.transform = "perspective(800px) rotateX(" + (-y * 8) + "deg) rotateY(" + (x * 8) + "deg) translateY(-4px)"; });
+    t.addEventListener("pointerleave", function () { t.style.transform = ""; });
+  });
+
+  /* Banda de logos: se duplica para que gire sin cortes */
+  var tr = document.getElementById("marquee-track"); tr.innerHTML += tr.innerHTML; Array.prototype.slice.call(tr.children, tr.children.length / 2).forEach(function (i) { i.alt = ""; i.setAttribute("aria-hidden", "true"); });
+
+  /* Menú: sección activa */
+  var links = document.querySelectorAll(".menu a");
+  if ("IntersectionObserver" in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (l) { l.classList.toggle("on", l.getAttribute("href") === "#" + e.target.id); }); }); }, { rootMargin: "-45% 0px -50% 0px" }); document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); }); }
+
+  /* Copiar correo */
+  document.getElementById("copy").addEventListener("click", function () {
+    var t = document.getElementById("mail").textContent, b = this;
+    function ok() { b.textContent = "Copiado"; setTimeout(function () { b.textContent = "Copiar"; }, 1800); }
+    function sel() { var r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Seleccionado"; }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, sel); else sel();
+  });
+
+  /* Formulario */
+  var form = document.getElementById("contact-form"), msg = document.getElementById("form-msg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = form.nombre.value.trim(), mail = form.email.value.trim(), text = form.mensaje.value.trim();
+    if (!name || !text || mail.indexOf("@") < 1) { msg.textContent = "Rellena tu nombre, un correo válido y el mensaje para poder responderte."; return; }
+    if (!CONFIG.formulario) { msg.textContent = "El formulario se activará al publicar la web. Mientras tanto, escríbenos a sdarder@ipforlearning.com."; return; }
+    fetch(CONFIG.formulario, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(form) })
+      .then(function (r) { if (r.ok) { form.reset(); msg.textContent = "Consulta enviada. Te responderemos lo antes posible."; } else { msg.textContent = "No se ha podido enviar. Inténtalo de nuevo en unos minutos."; } })
+      .catch(function () { msg.textContent = "No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo."; });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.0 136.0" width="136.0" height="136.0" role="img" aria-label="IPL · International Projects for Learning">
+<g transform="translate(8.000 8.000) scale(1.00000)">
+<circle cx="60" cy="60" r="56" fill="none" stroke="#A07A3C" stroke-width="2.5"/>
+<circle cx="60" cy="60" r="49" fill="none" stroke="#A07A3C" stroke-width="1"/>
+<g transform="translate(60 59) scale(0.72) translate(-60 -64)" stroke-linecap="round">
+<line x1="28" y1="88" x2="60" y2="28" stroke="#1C2B4A" stroke-width="5"/>
+<line x1="60" y1="28" x2="92" y2="88" stroke="#1C2B4A" stroke-width="5"/>
+<line x1="28" y1="88" x2="92" y2="88" stroke="#1C2B4A" stroke-width="5"/>
+<line x1="60" y1="28" x2="60" y2="66" stroke="#A07A3C" stroke-width="3.5"/>
+<line x1="28" y1="88" x2="60" y2="66" stroke="#A07A3C" stroke-width="3.5"/>
+<line x1="92" y1="88" x2="60" y2="66" stroke="#A07A3C" stroke-width="3.5"/>
+<circle cx="60" cy="28" r="10" fill="#1C2B4A"/>
+<circle cx="28" cy="88" r="10" fill="#1C2B4A"/>
+<circle cx="92" cy="88" r="10" fill="#1C2B4A"/>
+<circle cx="60" cy="66" r="8" fill="#A07A3C"/>
+</g></g>
+</svg>
