@@ -89,6 +89,7 @@ a{color:inherit}h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-w
 .hero h1{font-size:clamp(32px,5vw,54px);letter-spacing:-.8px;margin:12px 0 14px;max-width:900px}
 .hero p{color:#C9D0DC;max-width:720px;margin:0;font-size:18px}
 .meta{font-size:14px;color:#C9D0DC;margin-top:18px}
+.intro{max-width:780px;padding-top:52px}.intro h2{font-size:clamp(24px,3vw,30px);margin-bottom:14px}.intro p{margin:0 0 14px;color:var(--fg)}.intro a{color:var(--gold-ink);font-weight:600}.intro .firma{color:var(--muted);font-style:italic;font-size:15px}
 .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding-block:56px 88px}
 @media (max-width:960px){.lista{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.lista{grid-template-columns:1fr}}
 .card{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;text-decoration:none;transition:transform .2s,box-shadow .2s}
@@ -159,6 +160,11 @@ def main():
     cuerpo = ('<section class="hero"><div class="wrap"><div class="eyebrow">Blog IPL</div>'
               '<h1>Inteligencia artificial en el aula, contada desde el aula</h1>'
               '<p>Cada semana, ideas prácticas para docentes y equipos directivos: IA en educación, evaluación, tecnología y metodologías que funcionan.</p></div></section>'
+              '<div class="wrap"><div class="intro"><h2>Bienvenidos al blog de IPL</h2>'
+              '<p>La inteligencia artificial ya ha entrado en los colegios, y lo ha hecho para quedarse. La pregunta no es si los docentes vamos a usarla, sino <strong>cómo usarla bien</strong>: con criterio pedagógico, protegiendo a nuestros alumnos y ganando tiempo para lo que de verdad importa, que es enseñar y acompañar.</p>'
+              '<p>Estamos en plena época de <strong>exámenes, correcciones, notas y evaluaciones</strong>, justo el momento del curso en que más se nota la falta de tiempo. Por eso empezamos por ahí: cómo puede ayudarte la IA a corregir, a dar una devolución personalizada a cada alumno y a preparar la evaluación sin perder tu criterio.</p>'
+              '<p>Cada semana compartiremos aquí lo que trabajamos en nuestras <a href="../#ia">formaciones para docentes</a>: ideas probadas en el aula, ejemplos reales y pasos sencillos para empezar mañana mismo.</p>'
+              '<p class="firma">Sonina Darder · CEO de IPL</p></div></div>'
               f'<div class="wrap lista">{lista}</div>')
     (OUT / "index.html").write_text(pagina("Blog · IPL & Educational Coaching", "Ideas prácticas sobre inteligencia artificial en educación para docentes y colegios.", cuerpo, f"{WEB}blog/"), encoding="utf-8")
 
@@ -166,7 +172,7 @@ def main():
     idx = RAIZ / "index.html"
     t = idx.read_text(encoding="utf-8")
     seccion = ('<!--BLOG:INICIO--><section class="band" id="blog"><div class="wrap">'
-               '<div class="eyebrow">Blog</div><h2 style="margin:10px 0 28px">Ideas para docentes, cada semana</h2>'
+               '<div class="eyebrow">Blog</div><h2 style="margin:10px 0 12px">Ideas para docentes, cada semana</h2><p style="max-width:720px;margin:0 0 28px;color:var(--muted)">Estamos en época de exámenes, correcciones y notas. Cada semana, ideas prácticas para que la inteligencia artificial te ayude a evaluar mejor y en menos tiempo, sin perder tu criterio docente.</p>'
                '<div class="blog-grid">' + "".join(tarjeta(a, f'blog/{a["slug"]}.html', "h3") for a in arts[:3]) + '</div>'
                '<p style="margin-top:26px"><a class="btn navy" href="blog/">Ver todos los artículos</a></p></div></section><!--BLOG:FIN-->')
     if "<!--BLOG:INICIO-->" in t:
