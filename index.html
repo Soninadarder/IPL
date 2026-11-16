@@ -264,6 +264,13 @@ footer a:hover { color: var(--gold-soft); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+.blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:960px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.blog-grid{grid-template-columns:1fr}}
+.blog-grid .card{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.blog-grid .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(17,28,51,.12)}
+.blog-grid time{font-size:13px;color:var(--muted)}.blog-grid p{margin:0;color:var(--muted);font-size:15.5px}
+.blog-grid .mas{margin-top:auto;font-weight:700;color:var(--gold-ink);font-size:15px}
+.blog-grid .tags{display:flex;flex-wrap:wrap;gap:6px}.blog-grid .tags span{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -307,6 +314,7 @@ footer a:hover { color: var(--gold-soft); }
       <a href="#proyectos">Proyectos</a>
       <a href="#partners">Partners</a>
       <a href="#nosotros">Sobre nosotros</a>
+      <a href="blog/">Blog</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
@@ -567,6 +575,7 @@ footer a:hover { color: var(--gold-soft); }
     </div>
   </section>
 
+  <!--BLOG:INICIO--><section class="band" id="blog"><div class="wrap"><div class="eyebrow">Blog</div><h2 style="margin:10px 0 28px">Ideas para docentes, cada semana</h2><div class="blog-grid"><a class="card" href="blog/2026-11-16-corregir-con-ia-sin-perder-el-criterio.html"><time datetime="2026-11-16">16 de noviembre de 2026 · 2 min de lectura</time><h3>Corregir con IA sin perder el criterio docente: 5 claves para empezar</h3><p>La inteligencia artificial puede ahorrarte horas de corrección, pero la nota y el criterio siguen siendo tuyos. Te contamos cómo lo hacemos en el aula, paso a paso.</p><div class="tags"><span>IA en educación</span><span>Evaluación</span><span>Claude</span></div><span class="mas">Leer artículo →</span></a></div><p style="margin-top:26px"><a class="btn navy" href="blog/">Ver todos los artículos</a></p></div></section><!--BLOG:FIN-->
   <section class="band dark" id="contacto">
     <div class="wrap contact">
       <div class="contact-info">
